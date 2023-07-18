@@ -44,8 +44,10 @@ function checkAnswer() {
 
     if (isCorrect) {
         alert("Hey! You got it right! :D");
+        incrementScore();
     } else {
         alert(`Awww... you answered ${userAnswer}. The correct answer was ${calculatedAnswer[0]}!`);
+        incrementWrongAnswer();
     }
     runGame(calculatedAnswer[1]);
 }
@@ -64,11 +66,16 @@ function calculateCorrectAnswer() {
         throw `Unimplemented operator ${operator}, Aborting!`;
     }
 }
+/**
+ * Gets the current score and updates it by one
+ */
 function incrementScore() {
-
+    let score = parseInt(document.getElementById('score').innerText); // reads string and makes integer
+    document.getElementById('score').textContent = ++score; // js gets the score than updates it
 }
 function incrementWrongAnswer() {
-
+    let antiScore = parseInt(document.getElementById('incorrect').innerText); // reads string and makes integer
+    document.getElementById('incorrect').textContent = ++antiScore;
 }
 function displayAdditionQuestion(operand1, operand2) {
     // switch content of operands to generated numbers in display
