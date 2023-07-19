@@ -30,7 +30,11 @@ function runGame(gameType) {
     if (gameType === "addition") {
         displayAdditionQuestion(num1, num2);
     } else if (gameType === "multiply") {
-        displayAdditionQuestion(num1, num2);
+        displayMultiplyQuestion(num1, num2);
+    } else if (gameType === "subtract") {
+        displaySubtractQuestion(num1, num2);
+    } else if (gameType === "division") {
+        displayDivisionQuestion(num1, num2);
     } else {
         alert(`unknown game type: ${gameType}`); // popup notice for error
         throw `unknown game type: ${gameType}. Aborting!`; // documents error in google console
@@ -65,6 +69,10 @@ function calculateCorrectAnswer() {
         return [operand1 + operand2, "addition"];
     } else if (operator === "x") {
         return [operand1 * operand2, "multiply"];
+    } else if (operator === "-") {
+        return [operand1 - operand2, "subtract"];
+    } else if (operator === "/") {
+        return [operand1 / operand2, "division"];
     } else {
         alert(`Unimplemented operator ${operator}`);
         throw `Unimplemented operator ${operator}, Aborting!`;
@@ -87,15 +95,24 @@ function displayAdditionQuestion(operand1, operand2) {
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "+";
 }
-function displaySubtractQuestion() {
-
+function displaySubtractQuestion(operand1, operand2) {
+    // switch content of operands to generated numbers in display
+    // switch operands if solution is below 0
+    document.getElementById('operand1').textContent = operand1 > operand2 ? operand1 : operand2;
+    document.getElementById('operand2').textContent = operand1 > operand2 ? operand2 : operand1;
+    document.getElementById('operator').textContent = "-";
 }
-function displayMultiplyQuestion() {
+function displayMultiplyQuestion(operand1, operand2) {
     // switch content of operands to generated numbers in display
     document.getElementById('operand1').textContent = operand1;
     document.getElementById('operand2').textContent = operand2;
     document.getElementById('operator').textContent = "x";
 }
-function displayDivisionQuestion() {
-
+function displayDivisionQuestion(operand1, operand2) {
+    // switch content of operands to generated numbers in display
+    // create first operand by multiplication
+    operand1 = operand1*operand2;
+    document.getElementById('operand1').textContent = operand1;
+    document.getElementById('operand2').textContent = operand2;
+    document.getElementById('operator').textContent = "/";
 }
