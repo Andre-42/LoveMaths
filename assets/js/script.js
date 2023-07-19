@@ -17,7 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
     // check answer when enter is pressed instead of button
-    document.getElementById("answer-box").addEventListener("key-down", function(event){
+    document.getElementById("answer-box").addEventListener("keydown", function(event){
+        console.log(event.key);
         if (event.key === "Enter") {
             checkAnswer();
         }
