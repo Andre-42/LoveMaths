@@ -16,13 +16,22 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+    document.getElementById("answer-box").addEventListener("key-down", function(event){
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    })
+
     runGame("addition");
 });
 /**
  * The main game "loop", called when the script is first loaded and after the user's answer has processed
  */
 function runGame(gameType) {
-
+    // empty previous entry to answer-box
+    document.getElementById("answer-box").value = "";
+    // focus page on ready to write into answer-box
+    document.getElementById("answer-box").focus();
     // create 2 random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
